@@ -39,11 +39,17 @@ describe('Author (e2e)', () => {
 
     beforeEach(async () => {
       await request(app.getHttpServer())
-        .get('/author?page=1&name=John&size=1')
+        .post('/author')
         .set('Authorization', `Bearer ${token}`)
-        .expect(200)
+        .send({
+          name: 'John Doe',
+          birthday: '2017-03-07T20:26:52.350Z',
+          bio: 'A short bio',
+          country: 'Indonesia',
+        })
+        .expect(201)
         .expect((response) => {
-          authorId = response.body.data[0].id;
+          authorId = response.body.data.id;
         });
     });
 
