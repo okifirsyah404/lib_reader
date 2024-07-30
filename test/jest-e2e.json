@@ -1,0 +1,21 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@guards/(.*)$": "<rootDir>/../src/common/guards/$1",
+    "^@docs/(.*)$": "<rootDir>/../src/common/docs/$1",
+    "^@interceptor/(.*)$": "<rootDir>/../src/common/interceptor/$1",
+    "^@common/(.*)$": "<rootDir>/../src/common/$1",
+    "^@utils/(.*)$": "<rootDir>/../src/utils/$1",
+    "^@data/(.*)$": "<rootDir>/../src/data/$1",
+    "^@res/(.*)$": "<rootDir>/../src/resources/$1",
+    "^@validation/(.*)$": "<rootDir>/../src/validation/$1",
+    "^@app/(.*)$": "<rootDir>/../src/app/$1",
+    "^@/(.*)$": "<rootDir>/../src/$1"
+  }
+}

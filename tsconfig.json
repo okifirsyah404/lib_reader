@@ -1,0 +1,39 @@
+{
+  "watchOptions": {
+    "watchFile": "useFsEvents"
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noErrorTruncation": true,
+    "baseUrl": ".",
+    "paths": {
+      "@guards/*": ["src/common/guards/*"],
+      "@docs/*": ["src/common/docs/*"],
+      "@interceptor/*": ["./src/common/interceptor/*"],
+      "@common/*": ["./src/common/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@data/*": ["./src/data/*"],
+      "@res/*": ["./src/resources/*"],
+      "@validation/*": ["./src/validation/*"],
+      "@app/*": ["./src/app/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/utils/extensions/*", "src/**/**/*"]
+}
