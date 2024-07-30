@@ -19,7 +19,9 @@
 									"const res = pm.response;\r",
 									"const resData = res.json();\r",
 									"\r",
-									"pm.collectionVariables.set(\"ACCESS_TOKEN\", resData.data.token);"
+									"if(res.code == 201) {\r",
+									"    pm.collectionVariables.set(\"ACCESS_TOKEN\", resData.data.token);\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -180,12 +182,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/auth/sign-in",
-									"protocol": "http",
+									"raw": "{{HOST}}/auth/sign-in",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "3000",
 									"path": [
 										"auth",
 										"sign-in"
@@ -287,12 +287,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/auth/sign-in",
-									"protocol": "http",
+									"raw": "{{HOST}}/auth/sign-in",
 									"host": [
-										"localhost"
+										"{{HOST}}"
 									],
-									"port": "3000",
 									"path": [
 										"auth",
 										"sign-in"
@@ -601,7 +599,9 @@
 									"const res = pm.response;\r",
 									"const resData = res.json();\r",
 									"\r",
-									"pm.collectionVariables.set(\"ACCESS_TOKEN\", resData.data.token);"
+									"if(res.code == 201) {\r",
+									"    pm.collectionVariables.set(\"ACCESS_TOKEN\", resData.data.token);\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1185,7 +1185,9 @@
 									"\r",
 									"const resData = res.json();\r",
 									"\r",
-									"pm.collectionVariables.set(\"AUTHOR_ID\", resData.data.id);"
+									"if(res.code == 201) {\r",
+									"    pm.collectionVariables.set(\"AUTHOR_ID\", resData.data.id);\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1858,8 +1860,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"const res = pm.response\r",
-									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -3258,7 +3258,9 @@
 								"exec": [
 									"const res = pm.response\r",
 									"\r",
-									"pm.collectionVariables.set(\"AUTHOR_ID\", null);"
+									"if (res.code == 200) {\r",
+									"    pm.collectionVariables.set(\"AUTHOR_ID\", null);\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -3691,7 +3693,9 @@
 									"\r",
 									"const resData = res.json();\r",
 									"\r",
-									"pm.collectionVariables.set(\"BOOK_ID\", resData.data.id);"
+									"if (res.code == 201) {\r",
+									"    pm.collectionVariables.set(\"BOOK_ID\", resData.data.id);\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -7134,6 +7138,29 @@
 				},
 				{
 					"name": "Delete Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response\r",
+									"\r",
+									"if (res.code == 200) {\r",
+									"    pm.collectionVariables.set(\"BOOK_ID\", null);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
