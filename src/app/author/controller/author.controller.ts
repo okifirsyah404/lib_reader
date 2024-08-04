@@ -1,6 +1,7 @@
 import { DocsTag } from '@/common/docs/docs-tag';
 import {
   internalServerErrorExample,
+  pageValidationErrorExample,
   unauthorizedErrorExample,
 } from '@docs/docs-example';
 import { JwtAuthGuard } from '@guards/jwt-auth.guard';
@@ -35,14 +36,20 @@ import { AuthorService } from '../service/author.service';
 @ApiTags(DocsTag.author)
 @ApiBearerAuth()
 @ApiInternalServerErrorResponse({
-  schema: {
-    example: internalServerErrorExample,
-    description: 'Internal server error',
+  description: 'Internal server error',
+  content: {
+    'application/json': {
+      example: internalServerErrorExample,
+    },
   },
 })
 @ApiUnauthorizedResponse({
-  example: unauthorizedErrorExample,
   description: 'Unauthorized',
+  content: {
+    'application/json': {
+      example: unauthorizedErrorExample,
+    },
+  },
 })
 @UseGuards(JwtAuthGuard)
 @Controller('author')
@@ -66,15 +73,32 @@ export class AuthorController {
    *
    */
   @ApiCreatedResponse({
-    schema: {
-      example: AuthorDocsExample.create,
-      description: 'The author has been successfully created.',
+    description: 'The author has been successfully created.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.create,
+      },
     },
   })
   @ApiBadRequestResponse({
-    schema: {
-      example: AuthorDocsExample.badRequest,
-      description: 'Validation error',
+    description: 'Validation failed',
+    content: {
+      'application/json': {
+        examples: {
+          'Validation - Name': {
+            value: AuthorDocsExample.nameCreateValidation,
+          },
+          'Validation - Birthday': {
+            value: AuthorDocsExample.birthdayCreateValidation,
+          },
+          'Validation - Country': {
+            value: AuthorDocsExample.countryCreateValidation,
+          },
+          'Validation - Bio': {
+            value: AuthorDocsExample.bioCreateValidation,
+          },
+        },
+      },
     },
   })
   @Post()
@@ -99,9 +123,19 @@ export class AuthorController {
    *
    */
   @ApiOkResponse({
-    schema: {
-      example: AuthorDocsExample.findMany,
-      description: 'The list of authors has been successfully retrieved.',
+    description: 'The list of authors has been successfully retrieved.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.findAll,
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'Validation failed',
+    content: {
+      'application/json': {
+        example: pageValidationErrorExample,
+      },
     },
   })
   @Get()
@@ -123,15 +157,19 @@ export class AuthorController {
    *
    */
   @ApiOkResponse({
-    schema: {
-      example: AuthorDocsExample.findOne,
-      description: 'The author has been successfully retrieved.',
+    description: 'The author has been successfully retrieved.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.findOne,
+      },
     },
   })
   @ApiNotFoundResponse({
-    schema: {
-      example: AuthorDocsExample.notFound,
-      description: 'The author was not found.',
+    description: 'The author was not found.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.notFound,
+      },
     },
   })
   @Get(':id')
@@ -159,15 +197,40 @@ export class AuthorController {
    *
    */
   @ApiOkResponse({
-    schema: {
-      example: AuthorDocsExample.update,
-      description: 'The author has been successfully updated.',
+    description: 'The author has been successfully updated.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.update,
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'Validation failed.',
+    content: {
+      'application/json': {
+        examples: {
+          'Validation - Name': {
+            value: AuthorDocsExample.nameUpdateValidation,
+          },
+          'Validation - Birthday': {
+            value: AuthorDocsExample.birthdayUpdateValidation,
+          },
+          'Validation - Country': {
+            value: AuthorDocsExample.countryUpdateValidation,
+          },
+          'Validation - Bio': {
+            value: AuthorDocsExample.bioUpdateValidation,
+          },
+        },
+      },
     },
   })
   @ApiNotFoundResponse({
-    schema: {
-      example: AuthorDocsExample.notFound,
-      description: 'The author was not found.',
+    description: 'The author was not found.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.notFound,
+      },
     },
   })
   @Put(':id')
@@ -188,15 +251,19 @@ export class AuthorController {
    *
    */
   @ApiOkResponse({
-    schema: {
-      example: AuthorDocsExample.delete,
-      description: 'The author has been successfully deleted.',
+    description: 'The author has been successfully deleted.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.delete,
+      },
     },
   })
   @ApiNotFoundResponse({
-    schema: {
-      example: AuthorDocsExample.notFound,
-      description: 'The author was not found.',
+    description: 'The author was not found.',
+    content: {
+      'application/json': {
+        example: AuthorDocsExample.notFound,
+      },
     },
   })
   @Delete(':id')

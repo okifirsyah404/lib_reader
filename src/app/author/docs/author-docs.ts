@@ -23,7 +23,7 @@ export abstract class AuthorDocsExample {
       'New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016',
   };
 
-  static readonly findMany: BasePaginatedResponse<unknown> = {
+  static readonly findAll: BasePaginatedResponse<unknown> = {
     status: 'Success',
     statusCode: 200,
     message: ['Authors found'],
@@ -73,6 +73,60 @@ export abstract class AuthorDocsExample {
     status: 'Success',
     statusCode: 200,
     message: ['Author deleted'],
+  };
+
+  static readonly nameCreateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Name should not be empty', 'Name must be a string'],
+  };
+
+  static readonly birthdayCreateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: [
+      'Birthday should not be empty',
+      'Birthday must be a date instance',
+    ],
+  };
+
+  static readonly countryCreateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Country should not be empty', 'Country must be a string'],
+  };
+
+  static readonly bioCreateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Bio must be a string'],
+  };
+
+  static readonly nameUpdateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Name should not be empty', 'Name must be a string'],
+  };
+
+  static readonly birthdayUpdateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: [
+      'Birthday should not be empty',
+      'Birthday must be a date instance',
+    ],
+  };
+
+  static readonly countryUpdateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Country should not be empty', 'Country must be a string'],
+  };
+
+  static readonly bioUpdateValidation: BaseResponse<unknown> = {
+    status: 'BadRequestException',
+    statusCode: 400,
+    message: ['Bio must be a string'],
   };
 
   static readonly notFound: BaseResponse<unknown> = {
